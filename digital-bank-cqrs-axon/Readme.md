@@ -6,7 +6,7 @@
 ```
 -lambock
 -spring web & data jpa
--mysql driver
+-H2
 -axon framework
 -reactor-core
 -kotlin
@@ -44,13 +44,33 @@
         <artifactId>digital-bank-cqrs-axon</artifactId>
         <groupId>ma.enset</groupId>
         <version>3.0.1</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
+   
+   -> don't forget to add dependency to core-api module
 ```
   <br>
 
    . Create a spring boot project for micro query side
+
+->Have a look : [📦 customer-query-side ](./customer-query-side)
+```
+   <parent>
+        <artifactId>digital-bank-cqrs-axon</artifactId>
+        <groupId>ma.enset</groupId>
+        <version>3.0.1</version>
+       
+    </parent>
+-> don't forget to add dependency to core-api module
+```
+  <br>
+
+
+
+                 Command Side
+
+
+
+
 
 
 
@@ -154,12 +174,137 @@ curl -X POST \
 <br>
 
 
+                              Query Side
+
+
+## V- Create  entities, repository service to Handler Events
+
+-> Have a look of entities : [📦 Customer ](./customer-query-side/src/main/java/ma/enset/digitalbank/customerqueryside/entities/Customer.java)
+```
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Customer {
+    @Id
+    private String id;
+    private String name;
+    private String email;
+}
+
+```
+
+-> Have a look of repository : [📦 CustomerRepository ](./customer-query-side/src/main/java/ma/enset/digitalbank/customerqueryside/repositories/CustomerRepository.java)
+```
+@Repository
+public interface CustomerRepository extends JpaRepository<Customer, String> {
+
+}
+```
+
+-> Have a look of service : [📦 CustomerEventHandler ](./customer-query-side/src/main/java/ma/enset/digitalbank/customerqueryside/service/CustomerEventHandler.java)
+
+```
+//handle events for command side . call on boot
+@Service
+@Slf4j
+@AllArgsConstructor
+public class CustomerEventHandler {
+    private CustomerRepository customerRepository;
+
+    @EventHandler
+    public void on(CustomerCreatedEvent event){
+        log.info("************************");
+        log.info("CustomerCreatedEvent received");
+        Customer customer=new Customer();
+        customer.setId(event.getId());
+        customer.setName(event.getName());
+        customer.setEmail(event.getEmail());
+        customerRepository.save(customer);
+    }
+
+
+
+}
+
+//handle query create  after .
+```
+<br>
+
+     Test: we can see log of Events on console on boot
+
+![img_4.png](img_4.png)
+
+      on axon dashboard
+
+![img_5.png](img_5.png)
+
+<br>
+
+
+## VI -Create controllers and Other Event Handler to create and hande query
+
+-> Have a look of controller : [📦 CustomerQueryController ](./customer-query-side/src/main/java/ma/enset/digitalbank/customerqueryside/controller/CustomerQueryController.java)
+```
+-> don't forget to add query on core-api module  : [📦 query ](./core-api/src/main/java/ma/enset/digitalbank/coreapi/queries)
+@RestController
+@RequestMapping("/api/queries/customers")
+@AllArgsConstructor
+public class CustomerQueryController {
+    private QueryGateway queryGateway;
+    
+    @GetMapping
+    public CompletableFuture<List<Customer>>customers(){
+        return queryGateway.query(new GetAllCustomersQuerry(), ResponseTypes.multipleInstancesOf(Customer.class));
+    }
+}
+....
+
+```
+-> Have a look of CustomerQueryHandler : [📦 CustomerQueryHandler ](./customer-query-side/src/main/java/ma/enset/digitalbank/customerqueryside/handler/CustomerQueryHandler.java)
+```
+
+@Service
+@Slf4j
+@AllArgsConstructor
+public class CustomerQueryHandler {
+    public CustomerRepository customerRepository;
+
+    @QueryHandler
+    public List<Customer> customerList(GetAllCustomersQuery query){
+        return customerRepository.findAll();
+    }
+    @QueryHandler
+    public Customer customerList(GetCustomerByIdQuery query){
+        return customerRepository.findById(query.getId())
+                .orElseThrow(()->new RuntimeException("Customer not fount"));
+    }
+}
+
+```
+<br>
+
+     Test result on web 
+
+![img_6.png](img_6.png)
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+<br>
+
+                              Error
 
 
 
