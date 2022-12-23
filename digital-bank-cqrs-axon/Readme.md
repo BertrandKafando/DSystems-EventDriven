@@ -292,8 +292,11 @@ public class CustomerQueryHandler {
 
 ![img_6.png](img_6.png)
 
+<br>
 
+                    on axon dashbord
 
+![img_7.png](img_7.png)
 
 
 
