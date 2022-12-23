@@ -63,15 +63,15 @@
 -> don't forget to add dependency to core-api module
 ```
   <br>
+  <br>
+
+
+                                            Command Side
 
 
 
-                 Command Side
-
-
-
-
-
+<br>
+<br>
 
 
 
@@ -171,11 +171,14 @@ curl -X POST \
 }'
 ```
 ![img_3.png](img_3.png)
+
+<br>
 <br>
 
+                                                  Query Side
 
-                              Query Side
-
+<br>
+<br>
 
 ## V- Create  entities, repository service to Handler Events
 
