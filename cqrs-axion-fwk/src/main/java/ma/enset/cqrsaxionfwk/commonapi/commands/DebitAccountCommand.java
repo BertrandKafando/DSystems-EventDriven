@@ -1,15 +1,16 @@
 package ma.enset.cqrsaxionfwk.commonapi.commands;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
+import lombok.Getter;
 
-public class CeateAccountCommand extends BaseCommand<String> {
-    private double initialBalance;
+public class DebitAccountCommand extends BaseCommand<String> {
+    @Getter private double amount;
+    @Getter
     private String currency;
-    public CeateAccountCommand(String id, double initialBalance, String currency) {
+
+    public DebitAccountCommand(String id, double amount, String currency) {
         super(id);
-        this.initialBalance = initialBalance;
+        this.amount = amount;
         this.currency = currency;
     }
 

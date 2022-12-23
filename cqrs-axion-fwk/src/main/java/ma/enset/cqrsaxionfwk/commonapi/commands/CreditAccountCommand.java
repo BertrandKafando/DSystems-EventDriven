@@ -1,11 +1,14 @@
 package ma.enset.cqrsaxionfwk.commonapi.commands;
 
 
-public class DebitAccountCommand extends BaseCommand<String> {
-    private double amount;
-    private String currency;
+import lombok.Getter;
 
-    public DebitAccountCommand(String id, double amount, String currency) {
+public class CreditAccountCommand extends BaseCommand<String> {
+    @Getter
+   private double amount;
+    @Getter private String currency;
+
+    public CreditAccountCommand(String id, double amount, String currency) {
         super(id);
         this.amount = amount;
         this.currency = currency;
