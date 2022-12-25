@@ -40,5 +40,19 @@
 </p>
 
 
-    QueryHandling
+    RadarQueryHandling
+
+<p align="center">
+<img src="./imgs/7.png">
+</p>
+
+<p align="center">
+<img src="./imgs/8.png">
+</p>
+
+<p align="center">
+<img src="./imgs/9.png">
+</p>
+
+
 
