@@ -5,7 +5,6 @@ import ma.enset.CreateRadarCommand;
 import ma.enset.UpdateRadarCommand;
 import ma.enset.dtos.RadarCommandDTO;
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.hibernate.sql.Update;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;

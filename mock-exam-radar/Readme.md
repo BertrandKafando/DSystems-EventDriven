@@ -82,13 +82,15 @@ Le micro-service qui permet de gérer les radars.
 
 ```
 
->[radar-service-command-side](./radar-service/radar-command-side)
+>[radar-service-command-side](./radar-service/radar-command-side) 
 ```
+-8081
 -radar-service as parent
 ```
 
 >[radar-service-query-side](./radar-service/radar-query-side)
 ```
+-8082
 -radar-service as parent
 ```
 
@@ -118,11 +120,13 @@ Le micro-service d’immatriculation qui permet de gérer des véhicules apparte
 
 >[registration-service-command-side](./registration-service/registration-command-side)
 ```
+-8083
 -registration-service as parent
 ```
 
 >[registration-service-query-side](./registration-service/registration-query-side)
 ```
+-8084
 -registration-service as parent
 ```
 
