@@ -1,4 +1,4 @@
-_##  Examen Systèmes Distribués:
+##  Examen Systèmes Distribués:
 <br>
     
     On souhaite créer un système distribué basé sur les micro-services en utilisant une architecture pilotée
@@ -43,6 +43,11 @@ C'est le projet central
 ...
 ```
 <br>
+<br>
+<br>
+<br>
+<br>
+
 
 [👉 Creation de common-api ](./common-api)
 
@@ -53,6 +58,13 @@ C'est le projet central
 ```
 -project mock-exam-radar as parent
 ```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 [👉 Creation du microservice radar-service ](./radar-service)
  ```
@@ -80,3 +92,70 @@ Le micro-service qui permet de gérer les radars.
 -radar-service as parent
 ```
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
+[👉 Creation du microservice registration-service ](./registration-service)
+<br>
+
+```
+Le micro-service d’immatriculation qui permet de gérer des véhicules appartenant des propriétaires.
+ ```
+>[stacks && packages](./registration-service/pom.xml)
+```
+-project mock-exam-radar as parent
+-comman-api 
+```
+
+> [configuration](./registration-service/src/main/resources/application.properties)
+```
+...
+
+```
+
+>[registration-service-command-side](./registration-service/registration-command-side)
+```
+-registration-service as parent
+```
+
+>[registration-service-query-side](./registration-service/registration-query-side)
+```
+-registration-service as parent
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+[👉 Creation du microservice contravention-service ](./contravention-service)
+<br>
+
+```
+Le micro-service d’immatriculation qui permet de gérer des véhicules appartenant des propriétaires.
+ ```
+>[stacks && packages](./contravention-service/pom.xml)
+```
+-project mock-exam-radar as parent
+-comman-api 
+```
+
+> [configuration](./contravention-service/src/main/resources/application.properties)
+```
+...
+
+```
+
+>[contravention-service-command-side](./contravention-service/registration-command-side)
+```
+-contravention-service as parent
+```
+
+>[contravention-service-query-side](./contravention-service/registration-query-side)
+```
+-contravention-service as parent
+```
