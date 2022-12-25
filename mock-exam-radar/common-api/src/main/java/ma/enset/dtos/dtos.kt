@@ -1,6 +1,7 @@
 package ma.enset.dtos
 
 import ma.enset.Owner
+import java.util.*
 
 data class RadarCommandDTO (
         var maxSpeed: Long,
@@ -18,6 +19,14 @@ data class VehiculeCommandDTO (
         );
 
 
+data class InfractionDTO (
+        val date: Date,
+        val radarNumber: String,
+        val matriculeVehicle: String,
+        val speedVehicle: Double,
+        val radarSpeedMax: Double,
+        val montant: Double
+);
 
 
 

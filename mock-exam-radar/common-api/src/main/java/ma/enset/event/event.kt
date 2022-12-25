@@ -1,5 +1,7 @@
 package ma.enset.event
+import ma.enset.BaseCommand
 import ma.enset.Owner
+import java.util.*
 
 abstract class BaseEvent<T>(
         open val id : T
@@ -57,3 +59,24 @@ data class OwnerCreatedEvent(
         val email: String,
 
         ): BaseEvent<String>(id)
+
+data class InfractionCreatedEvent (
+        override val id:String,
+        val date: Date,
+        val radarNumber: String,
+        val matriculeVehicle: String,
+        val speedVehicle: Double,
+        val radarSpeedMax: Double,
+        val montant: Double
+): BaseEvent<String>(id);
+
+
+data class InfractionUpdateEvent (
+        override val id:String,
+        val date: Date,
+        val radarNumber: String,
+        val matriculeVehicle: String,
+        val speedVehicle: Double,
+        val radarSpeedMax: Double,
+        val montant: Double
+): BaseEvent<String>(id);

@@ -1,6 +1,7 @@
 package ma.enset
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier
+import java.util.*
 
 abstract class BaseCommand<T>(
         @TargetAggregateIdentifier
@@ -68,3 +69,28 @@ data class UpdateOwnerCommand(
         val email: String,
 
         ):BaseCommand<String>(id)
+
+
+
+
+
+data class CreateInfractionCommand (
+        override val id:String,
+        val date: Date,
+        val radarNumber: String,
+        val matriculeVehicle: String,
+        val speedVehicle: Double,
+        val radarSpeedMax: Double,
+        val montant: Double
+        ):BaseCommand<String>(id);
+
+
+data class UpdateInfractionCommand (
+        override val id:String,
+        val date: Date,
+        val radarNumber: String,
+        val matriculeVehicle: String,
+        val speedVehicle: Double,
+        val radarSpeedMax: Double,
+        val montant: Double
+):BaseCommand<String>(id);
