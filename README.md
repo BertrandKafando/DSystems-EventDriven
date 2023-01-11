@@ -1,5 +1,5 @@
 # EventDrivenSystems
--on every project you will find a readme that explain how to build step by step
+-on each project you will find a readme that explain how to build step by step
 
 <br>
 
